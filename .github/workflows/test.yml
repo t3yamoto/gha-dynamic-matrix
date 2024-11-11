@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
       - id: extract-keys
         run: |
           keys=$(yq e 'keys' apps.yml -o=json)
