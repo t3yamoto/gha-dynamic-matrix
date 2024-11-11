@@ -4,8 +4,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  apps:
+  extract-app-keys:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo hello
+      - id: extract-keys
+        run: |
+          keys=$(yq e 'keys' apps.yml -o=json)
+          echo "keys=${keys}" >> "${GITHUB_OUTPUT}"
+    outputs:
+      apps: ${{ steps.extract-keys.outputs.keys }}
+
+  app-keys-matrix:
+    runs-on: ubuntu-latest
+    needs: extract-app-keys
+    strategy:
+      matrix:
+        app: ${{ fromJson(needs.extract-app-keys.outputs.apps) }}
+    steps:
+      - run: echo ${{ matrix.app }}
