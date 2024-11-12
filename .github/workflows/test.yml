@@ -24,4 +24,5 @@ jobs:
         app: ${{ fromJson(needs.extract-app-keys.outputs.apps) }}
     steps:
       - run: echo ${{ matrix.app }}
-      - run: exit 78
+      - run: exit 0
+      - run: echo aaa
