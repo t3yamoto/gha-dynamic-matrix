@@ -1,0 +1,10 @@
+name: prod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    with:
+      ENVIRONMENT: prod
