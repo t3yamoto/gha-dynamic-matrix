@@ -26,4 +26,6 @@ jobs:
       - run: echo ${{ matrix.app }}
       - run: exit 0
       - run: echo aaa
+        if: ${{ success() }}
       - run: echo bbb
+        if: ${{ success() }}
