@@ -26,3 +26,4 @@ jobs:
       - run: echo ${{ matrix.app }}
       - run: exit 0
       - run: echo aaa
+      - run: echo bbb
